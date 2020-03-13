@@ -1,6 +1,18 @@
 <?php 
-//update v1.2
-//penyederhanaan code
+/* 
+Author: Ariyanki
+Version: v1.2
+
+Step:
+- Put this code in your web hosting. 
+- Go to Advanced DNS Zone Editor in your webhosting cpanel and Add Record DNS Zone for initiation: (this code is not include add DNS Zone event in my code to reduce the process)
+--- Name:<subdomain>.<domain>.<com/net/id/org/etc>
+--- TTL:7200
+--- Type:A
+--- Address: your server IP
+- hit that code from your server with scheduler every 10 minutes or up to you. This is the crontab script example:
+10 * * * * /usr/bin/wget -q "http://<domain>/<updateddnsfilename>.php"
+*/
 
 $cpanelUrl="www.cpanel.com";
 $cpanelPort="2083";
@@ -12,19 +24,18 @@ $newIP=$_SERVER['REMOTE_ADDR'];
 $output=updateddns();
 //print_r($output);
 
-
-
-
 function updateddns(){
 	global $cpanelUrl,$cpanelPort,$cpanelUser,$cpanelPassword,$domain,$subdomain,$newIP;
 	$records = doquery("fetchzone", array());
 	$line="";
-	foreach ($records[cpanelresult][data][0][record] as $val) {
-		if(preg_match('/'.$subdomain.'.'.$domain.'/',$val["name"])){
-			$line=$val['Line'];
-			$ip=$val['record'];
-			break;
-		
+	foreach ($records['cpanelresult']['data'][0]['record'] as $val) {
+		if ($val['type'] == "A"){
+			if(preg_match('/'.$subdomain.'.'.$domain.'/',$val["name"])){
+				$line=$val['Line'];
+				$ip=$val['record'];
+				break;
+			
+			}
 		}
 	}
 	if(!empty($line) and !empty($newIP) and $ip!=$newIP){												

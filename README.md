@@ -1,6 +1,6 @@
 # How to make your own Dynamic DNS Server with CPANEL API 2
 
-Read more detail on my site [www.ariyanki.net](http://www.ariyanki.net/php/?act=read&id=143 "Read More")
+Read more detail on my site article [www.ariyanki.net](http://www.ariyanki.net/php/?act=read&id=143)
 
 Usually ISP (Internet Service Providers) assign you a different IP-address each time you connect to the net via modem, ISDN or xDSL.
 
