@@ -1,4 +1,4 @@
-# How to make your own Dynamic DNS Server with CPANEL API 2
+# Make your own Dynamic DNS Server with CPANEL API 2
 
 Read more detail on my site article [www.ariyanki.net](http://www.ariyanki.net/php/?act=read&id=143)
 
